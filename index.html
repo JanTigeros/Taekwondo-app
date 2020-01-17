@@ -29,20 +29,32 @@
 
         <form class="ui form">
             <div class="field">
-                <div>{{ score1 > score2 ? "Prvi je ful bolš" : "Drugi je ful bolš"}}</div>
+                <div v-if="score1 == score2"
+                    style="background-color: white; height: 11vh; text-align: center; font-size: large;">
+                    <br><br><strong>Draw</strong></div>
+                <div v-else="score1 > 0 || score2 > 0"
+                    style="background-color: white; height: 11vh; text-align: center; font-size: large;">
+                    <br><br><strong>{{ score1 > score2 ? "Prvi je ful bolš" : "Drugi je ful bolš"}}</strong></div>
             </div>
             <button class="ui inverted red button" v-on:click="count($event)"
                 style="float: left; height: 10vh; width: 15%;">RED</button>
 
-            <div style="float: left !important; width: 34.6%;">
-                <input v-model="score1" type="text" style="height: 20vh; outline: none; border: none; text-align: center; font-size: large;" readonly >
-            </div>
-            <div style="float: left !important; width: 34.6%; ">
-                <input v-model="score2" type="text" style="height: 20vh; outline: none; border: none; text-align: center; font-size: large;" readonly>
+            <div style="float: left !important; width: 34.5%;">
+                <input v-model="score1" type="text"
+                    style="height: 20vh; outline: none; border: none; text-align: center; font-size: large; background-color: yellow;"
+                    readonly>
             </div>
 
             <button class="ui inverted blue button" v-on:click="count1($event)"
                 style="float: right; height: 10vh; width: 15%;">BLUE</button>
+
+            <div style="float: right !important; width: 34.5%; padding-right: 5px;">
+                <input v-model="score2" type="text"
+                    style="height: 20vh; outline: none; border: none; text-align: center; font-size: large; background-color: yellow;"
+                    readonly>
+            </div>
+
+
     </div>
 
     <script>
