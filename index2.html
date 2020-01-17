@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,11 +11,80 @@
     <script src="https://unpkg.com/vue/dist/vue.min.js"></script>
     <title>Document</title>
 </head>
+
 <body>
-    <div class="ui two item menu">
-        <a href="./index.html" class="item">Sparing</a>
-        <a href="./index2.html"class="active item">Forms</a>
+    <style>
+        body {
+            background-color: rgb(42, 42, 42);
+        }
+    </style>
+
+    <div id="root" style="padding: 5px;">
+        <button class="mini ui button" v-on:click="close()" style="float: right; margin: 10px;">X</button>
+        
+
+        <div class="ui two item menu">
+            <a href="./index.html" class="item">Sparing</a>
+            <a href="./index2.html" class="active item">Forms</a>
+        </div>
+    </div>
+    <div>
+        <div v-else="score1 > 0 || score2 > 0"
+            style="background-color: white; height: 11vh; text-align: center; font-size: large;">
+            <br><br><strong>{{  ? "Prvi je ful bolš" : "Drugi je ful bolš"}}</strong></div>
+    </div>
+    <button class="ui inverted yellow button" v-on:click="count($event)"
+            style="float: left; height: 10vh; width: 15%;">laws1</button>
+
+    <div style="float: left !important; width: 80%; padding-right: 5px;">
+        <input v-model="score2" type="text"
+            style="height: 20vh; outline: none; border: none; text-align: center; font-size: large; background-color: yellow;"
+            readonly>
     </div>
 
+    <button class="ui inverted yellow button" v-on:click="count2($event)"
+            style="float: left; height: 10vh; width: 15%;">Yellow card</button>
+
+    </div>
+<script>
+    const { ipcRenderer } = require('electron');
+
+        document.addEventListener("DOMContentLoaded", function () {
+            new Vue({
+                el: "#root",
+                data: () => ({
+                   stevec: 40,
+                   stevec2: 40,
+                   stevec3: 40,
+                   stevec4: 40,
+                   stevec5: 40
+                }),
+                methods: {
+                   count($event) {
+                    $event.preventDefault();
+                    this.stevec = this.stevec - 1
+                   },
+                   count2($event) {
+                    $event.preventDefault();
+                    this.stevec2 = this.stevec2 - 1
+                   },
+                   count3($event) {
+                    $event.preventDefault();
+                    this.stevec3 = this.stevec3 - 1
+                   },
+                   count4($event) {
+                    $event.preventDefault();
+                    this.stevec4 = this.stevec4 - 1
+                   },
+                   count5($event) {
+                    $event.preventDefault();
+                    this.stevec5 = this.stevec5 - 1
+                   } 
+                }
+            });
+        });
+
+    </script>
 </body>
+
 </html>
