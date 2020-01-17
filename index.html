@@ -24,7 +24,7 @@
 
         <div class="ui two item menu">
             <a href="./index.html" class="active item">Sparing</a>
-            <a href="./index2.html"class="item">Forms</a>
+            <a href="./index2.html" class="item">Forms</a>
         </div>
 
         <form class="ui form">
@@ -34,10 +34,12 @@
                     <br><br><strong>Draw</strong></div>
                 <div v-else="score1 > 0 || score2 > 0"
                     style="background-color: white; height: 11vh; text-align: center; font-size: large;">
-                    <br><br><strong>{{ score1 > score2 ? "Prvi je ful bolš" : "Drugi je ful bolš"}}</strong></div>
+                    <br><br><strong>{{ score1 > score2 ? "RED" : "BLUE" }}</strong></div>
             </div>
             <button class="ui inverted red button" v-on:click="count($event)"
                 style="float: left; height: 10vh; width: 15%;">RED</button>
+
+
 
             <div style="float: left !important; width: 34.5%;">
                 <input v-model="score1" type="text"
@@ -54,12 +56,15 @@
                     readonly>
             </div>
             <button class="ui inverted yellow button" v-on:click="count2($event)"
-            style="float: left; height: 10vh; width: 15%;">Yellow card</button>
+                style="float: left; height: 10vh; width: 15%;">Yellow card</button>
             <button class="ui inverted yellow button" v-on:click="count3($event)"
-            style="float: right; height: 10vh; width: 15%;">Yellow card</button>
-            <div>
-                
-            </div>
+                style="float: right; height: 10vh; width: 15%;">Yellow card</button>
+
+                <button class="ui inverted white button" v-on:click="reprimand1($event)"
+                style="float: left; height: 10vh; width: 15%;">Reprimand {{ opomin1 }}</button>
+            <button class="ui inverted white button" v-on:click="reprimand2($event)"
+                style="float: right; height: 10vh; width: 15%;">Reprimand {{ opomin2 }}</button>
+    </div>
 
 
     </div>
@@ -72,7 +77,9 @@
                 el: "#root",
                 data: () => ({
                     score1: 0,
-                    score2: 0
+                    score2: 0,
+                    opomin1: 0,
+                    opomin2: 0
                 }),
                 methods: {
                     close() {
@@ -88,11 +95,29 @@
                     },
                     count2($event) {
                         $event.preventDefault(),
-                        this.score1 = this.score1 - 1;
+                            this.score1 = this.score1 - 1;
                     },
                     count3($event) {
                         $event.preventDefault(),
-                        this.score2 = this.score2 - 1; 
+                            this.score2 = this.score2 - 1;
+                    },
+                    reprimand1($event){
+                        $event.preventDefault(),
+                        this.opomin1 = this.opomin1 + 1;
+
+                        if(this.opomin1 >= 3){
+                            this.score1 = this.score1 - 1;
+                            this.opomin1 = 0;
+                        }
+                    },
+                    reprimand2($event){
+                        $event.preventDefault(),
+                        this.opomin2 = this.opomin2 + 1;
+
+                        if(this.opomin2 >= 3){
+                            this.score2 = this.score2 - 1;
+                            this.opomin2 = 0;
+                        }
                     }
                 }
             });
