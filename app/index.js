@@ -1,4 +1,4 @@
-const { app, BrowserWindow } = require('electron')
+const { app, BrowserWindow, ipcMain } = require('electron')
 
 require('electron-debug')({
     showDevTools: process.env.NODE_ENV === 'development'
@@ -6,10 +6,7 @@ require('electron-debug')({
 
 function createWindow() {
     let win = new BrowserWindow({
-        width: 600,
-        height: 380,
-        resizable: false,
-        alwaysOnTop: true,
+        fullscreen: true,
         icon: './app/icon.png',
         webPreferences: {
             nodeIntegration: true
@@ -19,5 +16,9 @@ function createWindow() {
     win.setMenu(null);
     win.loadFile('./app/index.html')
 }
+
+ipcMain.on('request-app-close', event => {
+    app.quit();
+});
 
 app.on('ready', createWindow)
