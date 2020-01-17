@@ -6,10 +6,7 @@ require('electron-debug')({
 
 function createWindow() {
     let win = new BrowserWindow({
-        width: 600,
-        height: 380,
-        resizable: false,
-        alwaysOnTop: true,
+        fullscreen: true,
         icon: './app/icon.png',
         webPreferences: {
             nodeIntegration: true
