@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,18 +11,38 @@
     <script src="https://unpkg.com/vue/dist/vue.min.js"></script>
     <title>Document</title>
 </head>
-<body>
-    <style>
-        .paint {
 
-        }
-        
+<body>
+
+    <style>
+        .paint {}
     </style>
+    <div id="root" style="padding: 5px;">
+        <button v-on:click="close()" style="float: right;"></button>
+
+        <input style="height: 20vh; width: 100%;" class="paint">
+    </div>
+
+    <script>
+        const { ipcRenderer } = require('electron');
+
+        document.addEventListener("DOMContentLoaded", function () {
+            new Vue({
+                el: "#root",
+                data: () => ({
+                }),
+                methods: {
+                    close() {
+                        ipcRenderer.send('request-app-close');
+                    }
+                }
+            });
+        });
+    </script>
     <input style="height: 20vh; width: 100%;" class="paint">
     <button style="float: left; height: 15vh; width: 20%; color:black; background-color: red; ">RED</button>
     
 
-    
-
 </body>
+
 </html>
