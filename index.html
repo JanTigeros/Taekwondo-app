@@ -29,18 +29,20 @@
 
         <form class="ui form">
             <div class="field">
-                <input type="text" style="height: 15vh;" readonly>
+                <div>{{ score1 > score2 ? "Prvi je ful bolš" : "Drugi je ful bolš"}}</div>
             </div>
             <button class="ui inverted red button" v-on:click="count($event)"
-                style="float: left; height: 10vh; width: 15%;">RED {{ score1 }}</button>
+                style="float: left; height: 10vh; width: 15%;">RED</button>
 
-            <div style="float: left !important; width: 69.2%;">
-                <input type="text" style="height: 15vh;" readonly>
+            <div style="float: left !important; width: 34.6%;">
+                <input v-model="score1" type="text" style="height: 20vh; outline: none; border: none; text-align: center; font-size: large;" readonly >
+            </div>
+            <div style="float: left !important; width: 34.6%; ">
+                <input v-model="score2" type="text" style="height: 20vh; outline: none; border: none; text-align: center; font-size: large;" readonly>
             </div>
 
             <button class="ui inverted blue button" v-on:click="count1($event)"
-                style="float: right; height: 10vh; width: 15%;">BLUE
-                {{ score2 }}</button>
+                style="float: right; height: 10vh; width: 15%;">BLUE</button>
     </div>
 
     <script>
