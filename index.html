@@ -53,6 +53,13 @@
                     style="height: 20vh; outline: none; border: none; text-align: center; font-size: large; background-color: yellow;"
                     readonly>
             </div>
+            <button class="ui inverted yellow button" v-on:click="count2($event)"
+            style="float: left; height: 10vh; width: 15%;">Yellow card</button>
+            <button class="ui inverted yellow button" v-on:click="count3($event)"
+            style="float: right; height: 10vh; width: 15%;">Yellow card</button>
+            <div>
+                
+            </div>
 
 
     </div>
@@ -78,6 +85,14 @@
                     count1($event) {
                         $event.preventDefault();
                         this.score2 = this.score2 + 1;
+                    },
+                    count2($event) {
+                        $event.preventDefault(),
+                        this.score1 = this.score1 - 1;
+                    },
+                    count3($event) {
+                        $event.preventDefault(),
+                        this.score2 = this.score2 - 1; 
                     }
                 }
             });
