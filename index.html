@@ -15,10 +15,9 @@
 <body>
 
     <style>
-        body{
+        body {
             background-color: rgb(42, 42, 42);
         }
-        .paint {}
     </style>
     <div id="root" style="padding: 5px;">
         <button class="mini ui button" v-on:click="close()" style="float: right; margin: 10px;">X</button>
@@ -26,17 +25,22 @@
         <div class="ui two item menu">
             <a class="active item">Sparing</a>
             <a class="item">Forms</a>
-          </div>
-       
+        </div>
+
         <form class="ui form">
             <div class="field">
-              <input type="text" style="height: 15vh;" disabled>
+                <input type="text" style="height: 15vh;" readonly>
             </div>
-        <button class="ui inverted red button" v-on:click="count()"style="float: left; height: 10vh; width: 15%;">RED {{ score1 }}</button>
-        <div class="field">
-            <center><input type="text" style="height: 15vh; width: 60%;" disabled></center>
-          </div>
-        <button style="float: right; height: 15vh; width: 20%; color:black; background-color: blue; ">BLUE</button>
+            <button class="ui inverted red button" v-on:click="count($event)"
+                style="float: left; height: 10vh; width: 15%;">RED {{ score1 }}</button>
+
+            <div style="float: left !important; width: 69.2%;">
+                <input type="text" style="height: 15vh;" readonly>
+            </div>
+
+            <button class="ui inverted blue button" v-on:click="count1($event)"
+                style="float: right; height: 10vh; width: 15%;">BLUE
+                {{ score2 }}</button>
     </div>
 
     <script>
@@ -46,21 +50,27 @@
             new Vue({
                 el: "#root",
                 data: () => ({
-                    score1: 0
+                    score1: 0,
+                    score2: 0
                 }),
                 methods: {
                     close() {
                         ipcRenderer.send('request-app-close');
                     },
-                    count() {
+                    count($event) {
+                        $event.preventDefault();
                         this.score1 = this.score1 + 1;
+                    },
+                    count1($event) {
+                        $event.preventDefault();
+                        this.score2 = this.score2 + 1;
                     }
                 }
             });
         });
     </script>
-    
-    
+
+
 
 </body>
 
