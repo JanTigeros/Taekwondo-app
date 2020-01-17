@@ -18,9 +18,11 @@
         .paint {}
     </style>
     <div id="root" style="padding: 5px;">
-        <button v-on:click="close()" style="float: right;"></button>
-
+        <button v-on:click="close()" style="float: right;">close</button>
         <input style="height: 20vh; width: 100%;" class="paint">
+        <button v-on:click="count()"style="float: left; height: 15vh; width: 20%; color:black; background-color: red; ">RED</button>
+        <input style="height: 25vh; width: 60%; background-color: yellow; color: black; border: none;" >
+        <button style="float: right; height: 15vh; width: 20%; color:black; background-color: blue; ">BLUE</button>
     </div>
 
     <script>
@@ -30,17 +32,20 @@
             new Vue({
                 el: "#root",
                 data: () => ({
+                    score1: 0
                 }),
                 methods: {
                     close() {
                         ipcRenderer.send('request-app-close');
+                    },
+                    count() {
+                        this.score1=+ 1;
                     }
                 }
             });
         });
     </script>
-    <input style="height: 20vh; width: 100%;" class="paint">
-    <button style="float: left; height: 15vh; width: 20%; color:black; background-color: red; ">RED</button>
+    
     
 
 </body>
