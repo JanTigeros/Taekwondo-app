@@ -7,14 +7,14 @@ require('electron-debug')({
 function createWindow() {
     let win = new BrowserWindow({
         fullscreen: true,
-        icon: './app/icon.png',
+        icon: './icon.png',
         webPreferences: {
             nodeIntegration: true
         }
     });
 
     win.setMenu(null);
-    win.loadFile('./app/index.html')
+    win.loadFile('./index.html')
 }
 
 ipcMain.on('request-app-close', event => {
